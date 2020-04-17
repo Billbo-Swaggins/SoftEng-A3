@@ -4,24 +4,16 @@ import java.util.ArrayList;
 
 public class SalesManager extends Employee {
 
-  protected String employeeName;
   private ArrayList<Employee> employees;
-  protected SalesManager manager;
-  protected long salesID;
 
   public SalesManager(String employeeName, long salesID) {
-    super();
-    this.employeeName = employeeName;
-    this.salesID = salesID;
+    super(employeeName, salesID);
     this.employees = new ArrayList<>();
   }
 
-  protected String getEmployeeName() {
-    return employeeName;
-  }
-
-  protected void setEmployeeName(String employeeName) {
-    this.employeeName = employeeName;
+  public SalesManager(String employeeName, long salesID, SalesManager manager) {
+    super(employeeName, salesID, manager);
+    this.employees = new ArrayList<>();
   }
 
   protected ArrayList<Employee> getEmployees() {
@@ -30,22 +22,6 @@ public class SalesManager extends Employee {
 
   protected void addEmployee(Employee employee) {
     employees.add(employee);
-  }
-
-  protected SalesManager getManager() {
-    return manager;
-  }
-
-  protected void setManager(SalesManager manager) {
-    this.manager = manager;
-  }
-
-  protected long getSalesID() {
-    return salesID;
-  }
-
-  protected void setSalesID(long salesID) {
-    this.salesID = salesID;
   }
 
   double bonus() {

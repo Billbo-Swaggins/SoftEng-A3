@@ -5,9 +5,45 @@ import java.util.ArrayList;
 public abstract class Employee {
 
   private ArrayList<Client> clientList;
+  protected String employeeName;
+  protected long salesID;
+  protected SalesManager manager;
 
-  public Employee() {
+  public Employee(String employeeName, long salesID) {
     clientList = new ArrayList<>();
+    this.employeeName = employeeName;
+    this.salesID = salesID;
+  }
+
+  public Employee(String employeeName, long salesID, SalesManager manager) {
+    clientList = new ArrayList<>();
+    this.employeeName = employeeName;
+    this.salesID = salesID;
+    this.manager = manager;
+  }
+
+  public String getEmployeeName() {
+    return employeeName;
+  }
+
+  public long getSalesID() {
+    return salesID;
+  }
+
+  public SalesManager getManager() {
+    return manager;
+  }
+
+  public void setEmployeeName(String employeeName) {
+    this.employeeName = employeeName;
+  }
+
+  public void setSalesID(long salesID) {
+    this.salesID = salesID;
+  }
+
+  public void setManager(SalesManager manager) {
+    this.manager = manager;
   }
 
   public boolean addClient(Client c) {
@@ -37,9 +73,9 @@ public abstract class Employee {
     for (int i = 0; i < manager.getEmployees().size(); i++) {
       Employee temp = manager.getEmployees().get(i);
       if (temp instanceof SalesManager) {
-        System.out.print(String.format(" %s", ((SalesManager) temp).getEmployeeName()));
+        System.out.print(String.format(" %s", temp.getEmployeeName()));
       } else if (temp instanceof SalesAssociate) {
-        System.out.print(String.format(" %s", ((SalesAssociate) temp).getEmployeeName()));
+        System.out.print(String.format(" %s", temp.getEmployeeName()));
       }
     }
     System.out.print(". Clients:");
@@ -54,15 +90,14 @@ public abstract class Employee {
     }
   }
 
-  void printAssociate(SalesAssociate associate) {
-    System.out.print(String.format("Sales Associate: %s. ", associate.getEmployeeName()));
-    System.out.print(
-        String.format("Sales Manager: %s. ", associate.getManager().getEmployeeName()));
+  void printAssociate() {
+    System.out.print(String.format("Sales Associate: %s. ", this.getEmployeeName()));
+    System.out.print(String.format("Sales Manager: %s. ", this.getManager().getEmployeeName()));
     System.out.print("Clients:");
-    for (int i = 0; i < associate.getNumClients(); i++) {
+    for (int i = 0; i < this.getNumClients(); i++) {
       Client temp = this.getClients().get(i);
       System.out.print(String.format(" %s %d", temp.getClientName(), temp.getClientID()));
-      if (i != associate.getNumClients() - 1) {
+      if (i != this.getNumClients() - 1) {
         System.out.print(", ");
       } else {
         System.out.print("\n");

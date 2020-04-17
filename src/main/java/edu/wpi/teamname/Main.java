@@ -6,8 +6,8 @@ public class Main {
 
     SalesManager sam = new SalesManager("Sam", 3);
     SalesManager charlie = new SalesManager("Charlie", 4);
-    SalesAssociate sven = new SalesAssociate("Sven", 7);
-    SalesAssociate alex = new SalesAssociate("Alex", 20);
+    SalesAssociate sven = new SalesAssociate("Sven", 7, charlie);
+    SalesAssociate alex = new SalesAssociate("Alex", 20, sam);
 
     Client jo = new Client("Jo", 32);
     Client riley = new Client("Riley", 473);
@@ -16,11 +16,8 @@ public class Main {
     Client taylor = new Client("Taylor", 840);
     Client remi = new Client("Remi", 912);
 
-    // setting managers
-    sven.setManager(charlie);
+    // setting employees
     charlie.addEmployee(sven);
-
-    alex.setManager(sam);
     sam.addEmployee(alex);
 
     // setting clients
@@ -42,8 +39,8 @@ public class Main {
 
     sam.printManager(sam);
     charlie.printManager(charlie);
-    sven.printAssociate(sven);
-    alex.printAssociate(alex);
+    sven.printAssociate();
+    alex.printAssociate();
     jo.printClient();
     riley.printClient();
     peyton.printClient();
