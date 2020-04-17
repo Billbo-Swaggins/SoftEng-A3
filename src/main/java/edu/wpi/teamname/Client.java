@@ -37,4 +37,20 @@ public class Client {
   double totalSales() {
     return 0;
   }
+
+  void printClient() {
+    Employee temp = this.getSalesEmployee();
+    if (temp instanceof SalesManager) {
+      System.out.print(
+          String.format(
+              "Client: %s. Sales Employee: %s\n",
+              this.getClientName(), ((SalesManager) temp).getEmployeeName()));
+
+    } else if (temp instanceof SalesAssociate) {
+      System.out.print(
+          String.format(
+              "Client: %s. Sales Employee: %s\n",
+              this.getClientName(), ((SalesAssociate) temp).getEmployeeName()));
+    }
+  }
 }

@@ -1,9 +1,5 @@
 package edu.wpi.teamname;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-
 public class SalesAssociate extends Employee {
 
   protected String employeeName;
@@ -40,20 +36,8 @@ public class SalesAssociate extends Employee {
     this.salesID = salesID;
   }
 
-  double bonus() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-    ArrayList<Client> list = obtainClients();
-
-    int numClients = list.size();
-
+  double bonus() {
+    int numClients = this.getNumClients();
     return numClients * 500;
-  }
-
-  protected ArrayList<Client> obtainClients() // IMPORTANTE WE CAN'T USE THIS!!!
-      throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-    Method getClientMethod = Employee.class.getDeclaredMethod("getClients");
-    getClientMethod.setAccessible(true);
-    ArrayList<Client> list = (ArrayList<Client>) getClientMethod.invoke(this);
-
-    return list;
   }
 }
